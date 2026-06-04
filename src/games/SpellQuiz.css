@@ -163,6 +163,7 @@
 }
 
 .sq-hud-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.sq-hud-btns  { display: flex; gap: 6px; }
 .sq-hud-lives { font-size: 18px; letter-spacing: 1px; }
 .sq-mute-btn {
   background: none; border: none;

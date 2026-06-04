@@ -256,11 +256,14 @@ export default function TypeQuiz({ onBack }) {
           <div className="tq-hud-lives">
             {'❤️'.repeat(lives)}{'🖤'.repeat(Math.max(0, TOTAL_LIVES - lives))}
           </div>
-          <button
-            className="tq-mute-btn"
-            onClick={() => setMuted(toggleMute())}
-            aria-label={muted ? '소리 켜기' : '소리 끄기'}
-          >{muted ? '🔇' : '🔊'}</button>
+          <div className="tq-hud-btns">
+            <button className="tq-mute-btn" onClick={onBack} aria-label="홈으로">🏠</button>
+            <button
+              className="tq-mute-btn"
+              onClick={() => setMuted(toggleMute())}
+              aria-label={muted ? '소리 켜기' : '소리 끄기'}
+            >{muted ? '🔇' : '🔊'}</button>
+          </div>
         </div>
       </div>
 

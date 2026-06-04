@@ -209,6 +209,7 @@
 .tq-badge-koen { background: #dbeafe; color: #1e40af; }
 
 .tq-hud-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.tq-hud-btns  { display: flex; gap: 6px; }
 .tq-hud-lives { font-size: 18px; letter-spacing: 1px; }
 .tq-mute-btn {
   background: none; border: none;

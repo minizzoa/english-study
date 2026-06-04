@@ -281,11 +281,14 @@ export default function SpellQuiz({ onBack }) {
           <div className="sq-hud-lives">
             {'❤️'.repeat(lives)}{'🖤'.repeat(Math.max(0, TOTAL_LIVES - lives))}
           </div>
-          <button
-            className="sq-mute-btn"
-            onClick={() => setMuted(toggleMute())}
-            aria-label={muted ? '소리 켜기' : '소리 끄기'}
-          >{muted ? '🔇' : '🔊'}</button>
+          <div className="sq-hud-btns">
+            <button className="sq-mute-btn" onClick={onBack} aria-label="홈으로">🏠</button>
+            <button
+              className="sq-mute-btn"
+              onClick={() => setMuted(toggleMute())}
+              aria-label={muted ? '소리 켜기' : '소리 끄기'}
+            >{muted ? '🔇' : '🔊'}</button>
+          </div>
         </div>
       </div>
 

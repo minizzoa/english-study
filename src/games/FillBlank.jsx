@@ -235,11 +235,14 @@ export default function FillBlank({ onBack }) {
           <div className="fb-hud-lives">
             {'❤️'.repeat(lives)}{'🖤'.repeat(Math.max(0, TOTAL_LIVES - lives))}
           </div>
-          <button
-            className="fb-mute-btn"
-            onClick={() => setMuted(toggleMute())}
-            aria-label={muted ? '소리 켜기' : '소리 끄기'}
-          >{muted ? '🔇' : '🔊'}</button>
+          <div className="fb-hud-btns">
+            <button className="fb-mute-btn" onClick={onBack} aria-label="홈으로">🏠</button>
+            <button
+              className="fb-mute-btn"
+              onClick={() => setMuted(toggleMute())}
+              aria-label={muted ? '소리 켜기' : '소리 끄기'}
+            >{muted ? '🔇' : '🔊'}</button>
+          </div>
         </div>
       </div>
 

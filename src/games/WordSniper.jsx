@@ -13,15 +13,18 @@ const BUBBLE_COUNT  = 8;
 // 버블 초기 위치/속도 생성
 function makeBubble(word, id) {
   const angle = Math.random() * Math.PI * 2;
-  const speed = 0.6 + Math.random() * 0.8; // px/frame 기준 상대속도
+  const speed = 0.6 + Math.random() * 0.8;
+  const height = 52;
+  const width  = Math.max(84, word.en.length * 11 + 28); // 글자 수에 따라 가로 길이
   return {
     id,
     word,
-    x: 15 + Math.random() * 70,  // % 단위
-    y: 15 + Math.random() * 70,  // % 단위
+    x: 15 + Math.random() * 70,
+    y: 15 + Math.random() * 70,
     vx: Math.cos(angle) * speed,
     vy: Math.sin(angle) * speed,
-    size: 68 + Math.floor(Math.random() * 16), // px
+    width,   // 가로 (글자 수 기반)
+    height,  // 세로 (고정)
   };
 }
 
@@ -69,19 +72,19 @@ export default function WordSniper({ onBack }) {
       const areaH = areaRef.current?.clientHeight || 300;
 
       setBubbles(prev => prev.map(b => {
-        // % → px
         let px = (b.x / 100) * areaW;
         let py = (b.y / 100) * areaH;
-        const r = b.size / 2;
+        const hw = b.width  / 2;  // 가로 반경
+        const hh = b.height / 2;  // 세로 반경
 
         px += b.vx * dt * 0.07;
         py += b.vy * dt * 0.07;
 
         let vx = b.vx, vy = b.vy;
-        if (px - r < 0)       { px = r;          vx = Math.abs(vx);  }
-        if (px + r > areaW)   { px = areaW - r;  vx = -Math.abs(vx); }
-        if (py - r < 0)       { py = r;           vy = Math.abs(vy);  }
-        if (py + r > areaH)   { py = areaH - r;  vy = -Math.abs(vy); }
+        if (px - hw < 0)       { px = hw;          vx = Math.abs(vx);  }
+        if (px + hw > areaW)   { px = areaW - hw;  vx = -Math.abs(vx); }
+        if (py - hh < 0)       { py = hh;           vy = Math.abs(vy);  }
+        if (py + hh > areaH)   { py = areaH - hh;  vy = -Math.abs(vy); }
 
         return { ...b, x: (px / areaW) * 100, y: (py / areaH) * 100, vx, vy };
       }));
@@ -241,11 +244,14 @@ export default function WordSniper({ onBack }) {
           <div className="ws-hud-lives">
             {'❤️'.repeat(lives)}{'🖤'.repeat(Math.max(0, TOTAL_LIVES - lives))}
           </div>
-          <button
-            className="ws-mute-btn"
-            onClick={() => setMuted(toggleMute())}
-            aria-label={muted ? '소리 켜기' : '소리 끄기'}
-          >{muted ? '🔇' : '🔊'}</button>
+          <div className="ws-hud-btns">
+            <button className="ws-mute-btn" onClick={onBack} aria-label="홈으로">🏠</button>
+            <button
+              className="ws-mute-btn"
+              onClick={() => setMuted(toggleMute())}
+              aria-label={muted ? '소리 켜기' : '소리 끄기'}
+            >{muted ? '🔇' : '🔊'}</button>
+          </div>
         </div>
       </div>
 
@@ -280,8 +286,8 @@ export default function WordSniper({ onBack }) {
             style={{
               left:   `${b.x}%`,
               top:    `${b.y}%`,
-              width:  `${b.size}px`,
-              height: `${b.size}px`,
+              width:  `${b.width}px`,
+              height: `${b.height}px`,
               '--bcolor': `hsl(${(b.id * 47) % 360},70%,88%)`,
             }}
             onClick={() => handleBubble(b)}
