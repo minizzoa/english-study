@@ -265,11 +265,11 @@
 .ws-bubble:active { transform: translate(-50%, -50%) scale(.88); }
 
 .ws-bubble-en {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 800;
   color: #1e293b;
   text-align: center;
-  padding: 4px;
+  padding: 6px;
   word-break: break-all;
   line-height: 1.2;
   pointer-events: none;

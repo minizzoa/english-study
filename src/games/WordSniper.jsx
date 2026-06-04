@@ -21,7 +21,7 @@ function makeBubble(word, id) {
     y: 15 + Math.random() * 70,  // % 단위
     vx: Math.cos(angle) * speed,
     vy: Math.sin(angle) * speed,
-    size: 52 + Math.floor(Math.random() * 18), // px
+    size: 68 + Math.floor(Math.random() * 16), // px
   };
 }
 
