@@ -208,7 +208,7 @@ export default function FillBlank({ onBack }) {
             <div className="fb-stat"><span>정답 수</span><strong>{correct}개</strong></div>
           </div>
           <button className="fb-btn-primary" onClick={startGame}>다시 하기</button>
-          <button className="fb-btn-back" onClick={onBack}>← 메뉴</button>
+          <button className="fb-btn-back" onClick={() => setPhase('splash')}>← 뒤로</button>
         </div>
       </div>
     );

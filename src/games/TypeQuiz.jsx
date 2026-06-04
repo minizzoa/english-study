@@ -229,7 +229,7 @@ export default function TypeQuiz({ onBack }) {
               <span className="tq-mode-title">한 → 영</span>
             </button>
           </div>
-          <button className="tq-btn-back" onClick={onBack}>← 메뉴</button>
+          <button className="tq-btn-back" onClick={() => setPhase('splash')}>← 뒤로</button>
         </div>
       </div>
     );

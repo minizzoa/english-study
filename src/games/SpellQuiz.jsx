@@ -257,7 +257,7 @@ export default function SpellQuiz({ onBack }) {
             <div className="sq-stat"><span>완성 단어</span><strong>{correctCount}개</strong></div>
           </div>
           <button className="sq-btn-primary" onClick={startGame}>다시 하기</button>
-          <button className="sq-btn-back" onClick={onBack}>← 메뉴</button>
+          <button className="sq-btn-back" onClick={() => setPhase('splash')}>← 뒤로</button>
         </div>
       </div>
     );

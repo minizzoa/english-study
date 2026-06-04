@@ -220,7 +220,7 @@ export default function WordSniper({ onBack }) {
             <div className="ws-stat"><span>도달 레벨</span><strong>Lv.{level}</strong></div>
           </div>
           <button className="ws-btn-primary" onClick={startGame}>다시 하기</button>
-          <button className="ws-btn-back" onClick={onBack}>← 메뉴</button>
+          <button className="ws-btn-back" onClick={() => setPhase('splash')}>← 뒤로</button>
         </div>
       </div>
     );
