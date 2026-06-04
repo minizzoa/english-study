@@ -1,0 +1,102 @@
+/* ═══════════════════════════════════════════════
+   영어 단어 게임 — 게임 선택 화면 스타일
+═══════════════════════════════════════════════ */
+
+.gs-wrap {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px 40px;
+  background: linear-gradient(160deg, #eff6ff 0%, #f0fdf4 50%, #fff7ed 100%);
+}
+
+.gs-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.gs-logo { font-size: 56px; line-height: 1; }
+
+.gs-header h1 {
+  font-size: 30px;
+  font-weight: 900;
+  color: #1e293b;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.gs-header p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* 2×1 grid (두 게임) */
+.gs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.gs-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 14px;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 0 #cbd5e1;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .08s, box-shadow .08s, border-color .15s;
+  text-align: center;
+}
+
+.gs-card:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cbd5e1;
+}
+
+.gs-card:hover {
+  border-color: #3b82f6;
+}
+
+.gs-card-icon { font-size: 36px; line-height: 1; }
+
+.gs-card-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.02em;
+}
+
+.gs-card-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* 세 번째 카드: 두 열을 차지하되 첫 번째 카드 너비로 가운데 정렬 */
+.gs-card-wide {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 7px);
+  justify-self: center;
+}
+
+.gs-level-badge {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 600;
+}

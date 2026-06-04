@@ -1,0 +1,402 @@
+/* ═══════════════════════════════════════════════
+   SpellQuiz — 스펠링 배열 게임 스타일
+═══════════════════════════════════════════════ */
+
+/* ── Splash / Over ─────────────────────────── */
+.sq-splash {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #faf5ff 0%, #f3e8ff 50%, #ede9fe 100%);
+  padding: 20px;
+}
+
+.sq-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 32px 24px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.sq-splash-icon { font-size: 56px; }
+
+.sq-card h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #1e293b;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.sq-card p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.sq-rules {
+  list-style: none;
+  padding: 12px 16px;
+  margin: 0;
+  background: #f8fafc;
+  border-radius: 14px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+}
+.sq-rules li { font-size: 13px; color: #475569; }
+
+.sq-btn-primary {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 0 #7e22ce;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform .08s, box-shadow .08s;
+}
+.sq-btn-primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #7e22ce;
+}
+
+.sq-btn-back {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+  touch-action: manipulation;
+  font-family: inherit;
+}
+
+.sq-rank {
+  font-size: 22px;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.sq-stats {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+.sq-stat {
+  flex: 1;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.sq-stat span   { font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.sq-stat strong { font-size: 26px; font-weight: 800; color: #1e293b; }
+
+/* ── Game screen ───────────────────────────── */
+.sq-game {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, #faf5ff 0%, #f3e8ff 100%);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* HUD */
+.sq-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 10px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  flex-shrink: 0;
+}
+
+.sq-hud-score { display: flex; flex-direction: column; align-items: flex-start; }
+.sq-hud-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.sq-hud-lbl { font-size: 10px; color: #94a3b8; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-top: 1px; }
+
+.sq-hud-mid { display: flex; align-items: center; gap: 6px; }
+.sq-badge-lv {
+  background: #a855f7;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.sq-badge-streak {
+  background: #f97316;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+.sq-hud-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.sq-hud-lives { font-size: 18px; letter-spacing: 1px; }
+.sq-mute-btn {
+  background: none; border: none;
+  font-size: 16px; cursor: pointer;
+  padding: 0; touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.7;
+  transition: opacity .15s, transform .08s;
+  line-height: 1;
+}
+.sq-mute-btn:active { transform: scale(.85); opacity: 1; }
+
+/* 진행 카운터 */
+.sq-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px 4px;
+  flex-shrink: 0;
+}
+.sq-q-counter { font-size: 13px; color: #64748b; font-weight: 700; }
+.sq-q-correct { font-size: 13px; color: #a855f7; font-weight: 700; }
+
+/* 타이머 바 */
+.sq-timer-wrap {
+  height: 5px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+  margin: 0 16px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.sq-timer-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #a855f7, #7c3aed);
+  border-radius: 3px;
+  transition: width .9s linear;
+}
+.sq-timer-bar.sq-timer-danger { background: linear-gradient(90deg, #ef4444, #f97316) !important; }
+
+/* 문제 영역 */
+.sq-question-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px 8px;
+  gap: 16px;
+  min-height: 0;
+}
+
+.sq-ko-hint {
+  font-size: 26px;
+  font-weight: 900;
+  color: #7c3aed;
+  background: #f5f3ff;
+  border: 2px solid #ddd6fe;
+  padding: 8px 28px;
+  border-radius: 99px;
+  letter-spacing: -0.01em;
+}
+
+/* 정답 슬롯 */
+.sq-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.sq-slot {
+  width: var(--sz, 44px);
+  height: var(--sz, 44px);
+  border-radius: 10px;
+  border: 2.5px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--sz, 44px) * 0.42);
+  font-weight: 800;
+  color: #1e293b;
+  transition: border-color .15s, background .15s, transform .1s;
+}
+
+/* 현재 입력 대기 슬롯 — 깜빡이는 커서 효과 */
+.sq-slot-active {
+  border-color: #a855f7;
+  background: #faf5ff;
+  animation: sq-blink .9s ease-in-out infinite;
+}
+@keyframes sq-blink {
+  0%, 100% { border-color: #a855f7; }
+  50%       { border-color: #ddd6fe; }
+}
+
+/* 정답 입력된 슬롯 */
+.sq-slot-filled {
+  border-color: #a855f7;
+  background: #f5f3ff;
+  color: #7c3aed;
+  transform: scale(1.05);
+}
+
+/* 힌트로 입력된 슬롯 */
+.sq-slot-hinted {
+  border-color: #fbbf24;
+  background: #fef9c3;
+  color: #92400e;
+}
+
+/* 완성 단어 표시 */
+.sq-word-complete {
+  font-size: 18px;
+  font-weight: 700;
+  color: #7c3aed;
+  background: #f5f3ff;
+  border: 1.5px solid #ddd6fe;
+  padding: 6px 22px;
+  border-radius: 12px;
+  animation: sq-pop .25s ease;
+}
+
+@keyframes sq-pop {
+  from { opacity: 0; transform: scale(.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* 토스트 */
+.sq-toast-row {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sq-toast {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 5px 18px;
+  border-radius: 99px;
+  white-space: nowrap;
+  animation: sq-pop .2s ease;
+}
+.sq-toast-correct { background: #f5f3ff; color: #6d28d9; }
+.sq-toast-wrong   { background: #fee2e2; color: #b91c1c; }
+.sq-toast-timeout { background: #fef3c7; color: #b45309; }
+
+/* 알파벳 타일 영역 */
+.sq-tiles-area {
+  padding: 10px 14px 24px;
+  background: #fff;
+  border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.sq-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* 알파벳 타일 */
+.sq-tile {
+  width: var(--sz, 44px);
+  height: var(--sz, 44px);
+  border-radius: 10px;
+  background: #f5f3ff;
+  border: 2px solid #ddd6fe;
+  border-bottom: 4px solid #c4b5fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--sz, 44px) * 0.42);
+  font-weight: 800;
+  color: #5b21b6;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .08s, box-shadow .08s, opacity .15s;
+  font-family: inherit;
+}
+
+.sq-tile:active:not(:disabled) {
+  transform: translateY(4px);
+  border-bottom-width: 0px;
+  margin-bottom: 4px;
+}
+
+/* 사용된 타일 */
+.sq-tile-used {
+  opacity: 0.18;
+  pointer-events: none;
+  border-color: #e2e8f0;
+  background: #f8fafc;
+  color: #94a3b8;
+  border-bottom-width: 2px;
+}
+
+/* 틀린 탭 — 흔들기 */
+@keyframes sq-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-7px); }
+  40%       { transform: translateX(7px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+.sq-tile-wrong {
+  animation: sq-shake .35s ease !important;
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+}
+
+/* 힌트 버튼 */
+.sq-hint-btn {
+  padding: 8px 22px;
+  background: #fef9c3;
+  border: 2px solid #fde047;
+  border-radius: 99px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #854d0e;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .15s, transform .08s;
+}
+.sq-hint-btn:active:not(:disabled) { transform: scale(.94); }
+.sq-hint-btn:disabled { opacity: 0.35; cursor: default; }
